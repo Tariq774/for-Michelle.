@@ -2,88 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My Love ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Michelle ❤️</title>
+
   <style>
     body {
-      background-color: #ffe6f0;
+      background: linear-gradient(to bottom, #ffe6f0, #fff);
       font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
-      padding: 50px;
+      padding: 30px;
       color: #d6336c;
       overflow: hidden;
     }
+
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
-    p {
-      font-size: 1.5em;
-      margin: 15px 0;
+
+    #type-text {
+      font-size: 1.4em;
+      margin: 20px 0;
+      min-height: 50px;
     }
+
     .love {
-      font-size: 3em;
+      font-size: 2.5em;
       font-weight: bold;
       color: #ff0033;
-      margin-top: 40px;
+      margin-top: 30px;
     }
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      bottom: -50px;
-      font-size: 2em;
-      color: #ff3366;
-      animation: floatUp 6s linear infinite;
+
+    img {
+      width: 180px;
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-    }
-    /* Cute play button */
-    .play-btn {
+
+    .btn {
       background-color: #ff3366;
       border: none;
       color: white;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border-radius: 30px;
+      padding: 12px 25px;
+      font-size: 1em;
+      border-radius: 25px;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
     }
-    .play-btn:hover {
+
+    .btn:hover {
       transform: scale(1.1);
       background-color: #ff0033;
     }
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 1.8em;
+      color: #ff3366;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
   </style>
 </head>
-<body>
-  <h1>💖 Hey Beautiful 💖</h1>
-  <p>You make my world brighter 🌸</p>
-  <p>Every day with you is special ✨</p>
-  <p class="love">I Love You so much Michelle💕</p>
 
-  <!-- Background music -->
+<body>
+
+  <h1>💖 Hey Michelle 💖</h1>
+
+  <!-- Typewriter text -->
+  <div id="type-text"></div>
+
+  <!-- Optional image -->
+  <!-- Replace with your own image -->
+  <img src="michelle.jpg" alt="Michelle">
+
+  <p class="love">I Love You So Much 💕</p>
+
+  <!-- Music -->
   <audio id="bg-music" loop>
-    <source src="your-song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    <source src="love-song.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Play button -->
-  <button class="play-btn" onclick="document.getElementById('bg-music').play()">❤️ Play Our Song 🎶</button>
+  <!-- Buttons -->
+  <div>
+    <button class="btn" onclick="playMusic()">▶ Play</button>
+    <button class="btn" onclick="pauseMusic()">⏸ Pause</button>
+  </div>
 
-  <!-- Floating hearts -->
   <script>
+    // Music controls
+    function playMusic() {
+      document.getElementById("bg-music").play();
+    }
+
+    function pauseMusic() {
+      document.getElementById("bg-music").pause();
+    }
+
+    // Typewriter effect
+    const text = "You make my world brighter 💖 Every moment with you is special ✨ I’m so lucky to have you Michelle ❤️";
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("type-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+
+    typeWriter();
+
+    // Floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.innerText = "❤️";
       heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      heart.style.animationDuration = (5 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
+
+      setTimeout(() => heart.remove(), 7000);
     }
-    setInterval(createHeart, 500);
+
+    setInterval(createHeart, 800);
   </script>
+
 </body>
 </html>
